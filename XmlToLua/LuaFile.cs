@@ -73,7 +73,10 @@ namespace XmlToLua
                 }
                 else
                 {
-                    builder.Append($"[\"{item.Key}\"]=").Append("{");
+                    if (item.Key.EndsWith("List")==false)
+                    {
+                        builder.Append($"[\"{item.Key}\"]=").Append("{");
+                    }                    
                 }
 
                 int count = 1;
@@ -88,7 +91,8 @@ namespace XmlToLua
                     if (child.childDic.Count > 0)
                     {
                         forceArray = child.name.EndsWith("List");
-                        BuildChild(child.childDic);
+                        BuildChild(child.childDic, forceArray);
+                        forceArray = false;
                     }
 
                     if (needToArray)
@@ -102,7 +106,10 @@ namespace XmlToLua
                     }
                 }
 
-                builder.Append("}");
+                if (item.Key.EndsWith("List") == false)
+                {
+                    builder.Append("}");
+                }
 
                 if (childCount < elementDic.Count)
                 {
