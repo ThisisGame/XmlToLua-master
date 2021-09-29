@@ -35,6 +35,19 @@ namespace XmlToLua
         }
 
         /// <summary>
+        /// 读取Xml文件
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public ElementData ReadXmlContent(XmlDocument xmlDoc)
+        {
+            
+            ReadElement(xmlDoc.ChildNodes);
+
+            return rootElement;
+        }
+
+        /// <summary>
         /// 读取元素
         /// </summary>
         /// <param name="nodeList"></param>

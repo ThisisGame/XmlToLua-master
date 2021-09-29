@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Level>
+    <SpawnPointList>
+        <SpawnPoint UID="368681069" Name="startspot_2" Position="(26.925, 3.232, -91.096)" Rotation="(0.000, 0.000, 0.000, 1.000)" Enabled="True" />
+        <SpawnPoint UID="755108909" Name="startspot_4" Position="(-1.047, 3.436, -60.043)" Rotation="(0.000, 0.000, 0.000, 1.000)" Enabled="True" />
+        <SpawnPoint UID="712338061" Name="startspot_1" Position="(18.940, 3.182, -93.058)" Rotation="(0.000, 0.000, 0.000, 1.000)" Enabled="True" />
+        <SpawnPoint UID="25024077" Name="startspot_3" Position="(-4.172, 3.299, -60.659)" Rotation="(0.000, 0.000, 0.000, 1.000)" Enabled="True" />
+    </SpawnPointList>
+    <CheckPointList>
+        <CheckPoint UID="387281144" Name="checkpoint_1" Position="(0.000, 0.000, 0.000)" Rotation="(0.000, 0.000, 0.000, 1.000)" Enabled="True">
+            <WaveList>
+                <Wave UID="743317870" Name="wave_1" Position="(0.000, 0.000, 0.000)" Rotation="(0.000, 0.000, 0.000, 1.000)" Enabled="True">
+                    <CorpsList>
+                        <Corps UID="671868058" Name="corps_rocketsoilder" Position="(0.000, 0.000, 0.000)" Rotation="(0.000, 0.000, 0.000, 1.000)" Enabled="True" Total="20" Exist="10" PresetID="123000233" Follow="">
+                            <SpawnPoint UID="712338061" IsTeam="False" />
+                            <SpawnPoint UID="368681069" IsTeam="True" />
+                        </Corps>
+                        <Corps UID="732536824" Name="corps_riflesoilder" Position="(0.000, 0.000, 0.000)" Rotation="(0.000, 0.000, 0.000, 1.000)" Enabled="True" Total="20" Exist="10" PresetID="123000235" Follow="671868058">
+                            <SpawnPoint UID="712338061" IsTeam="False" />
+                            <SpawnPoint UID="368681069" IsTeam="True" />
+                        </Corps>
+                    </CorpsList>
+                </Wave>
+                <Wave UID="565250796" Name="wave_2" Position="(0.000, 0.000, 0.000)" Rotation="(0.000, 0.000, 0.000, 1.000)" Enabled="True">
+                    <CorpsList>
+                        <Corps UID="752255545" Name="corps_tank" Position="(0.000, 0.000, 0.000)" Rotation="(0.000, 0.000, 0.000, 1.000)" Enabled="True" Total="4" Exist="2" PresetID="123000241" Follow="">
+                            <SpawnPoint UID="25024077" IsTeam="False" />
+                        </Corps>
+                        <Corps UID="523838521" Name="corps_riflesoilder" Position="(0.000, 0.000, 0.000)" Rotation="(0.000, 0.000, 0.000, 1.000)" Enabled="True" Total="30" Exist="10" PresetID="123000235" Follow="752255545">
+                            <SpawnPoint UID="712338061" IsTeam="False" />
+                            <SpawnPoint UID="368681069" IsTeam="False" />
+                            <SpawnPoint UID="25024077" IsTeam="False" />
+                            <SpawnPoint UID="755108909" IsTeam="False" />
+                        </Corps>
+                    </CorpsList>
+                </Wave>
+            </WaveList>
+        </CheckPoint>
+    </CheckPointList>
+</Level>

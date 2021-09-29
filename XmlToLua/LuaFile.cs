@@ -48,21 +48,24 @@ namespace XmlToLua
             builder.Append("local dataTable ={");
             BuildAttribute(rootElement.attributeList);
             BuildChild(rootElement.childDic);
-            builder.AppendLine("}").AppendLine(META_TABLE).AppendLine(END_OF_FILE);
-	        builder.Append(BEHAVIOR_NAMESPACE).Append(real_file_name).Append(" = dataTable;\r\n");
-	        builder.AppendLine(REAL_END_FILE);
+            builder.AppendLine("}");
+         //   builder.AppendLine("}")
+         //       .AppendLine(META_TABLE)
+         //       .AppendLine(END_OF_FILE);
+         //builder.Append(BEHAVIOR_NAMESPACE).Append(real_file_name).Append(" = dataTable;\r\n");
+            builder.AppendLine(REAL_END_FILE);
         }
 
         /// <summary>
         /// 处理子节点
         /// </summary>
         /// <param name="elementDic"></param>
-        private void BuildChild(Dictionary<string, List<ElementData>> elementDic)
+        private void BuildChild(Dictionary<string, List<ElementData>> elementDic,bool forceArray=false)
         {
             int childCount = 1;
             foreach (KeyValuePair<string, List<ElementData>> item in elementDic)
             {
-                bool needToArray = NeedToArray(item.Key, item.Value);
+                bool needToArray = forceArray? forceArray: NeedToArray(item.Key, item.Value);
                 if (needToArray)
                 {
                     string key = item.Key.StartsWith("TA_", StringComparison.Ordinal) ? item.Key.Substring(3) : item.Key;
@@ -84,6 +87,7 @@ namespace XmlToLua
                     BuildAttribute(child.attributeList);
                     if (child.childDic.Count > 0)
                     {
+                        forceArray = child.name.EndsWith("List");
                         BuildChild(child.childDic);
                     }
 
