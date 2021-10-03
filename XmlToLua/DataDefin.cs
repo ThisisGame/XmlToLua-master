@@ -34,5 +34,7 @@ namespace XmlToLua
         NUMBER = 1,
         STRING = 2,
         NIL = 3,
+        VECTOR3 = 4,
+        QUATERNION = 5
     }
 }

@@ -98,21 +98,28 @@ namespace XmlToLua
                 {
                     name = item.Name,
                     value = item.Value,
-			};
+			    };
 				//去掉多余的引号
 	            data.value = data.value.Replace("\"", "");
-				data.dataType = GetAttributeType(data.value);
+				data.dataType = GetAttributeType(ref data.value);
                 attributeList.Add(data);
             }
             return attributeList;
         }
+
+
+        public delegate string ModifyVector3(string str);
+        public delegate string ModifyQuaternion(string str);
+
+        public static ModifyVector3 modifyVector3;
+        public static ModifyQuaternion modifyQuaternion;
 
         /// <summary>
         /// 取得属性值的数据类型
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        private AttributeType GetAttributeType(string value)
+        private AttributeType GetAttributeType(ref string value)
         {
             AttributeType result = AttributeType.NIL;
 	        double d;
@@ -124,6 +131,27 @@ namespace XmlToLua
             else if (!string.IsNullOrEmpty(value))
             {
                 result = AttributeType.STRING;
+
+                if (value.StartsWith("(") && value.EndsWith(")")){
+                    string[] valueArr = value.Split(new char[] { ','});
+                    if(valueArr.Length==3)//Vector3
+                    {
+                        if (modifyVector3!=null)
+                        {
+                            result = AttributeType.VECTOR3;
+                            value = modifyVector3(value);
+                        }
+                        
+                    }
+                    else if(valueArr.Length==4)//Quatenion
+                    {
+                        if (modifyQuaternion != null)
+                        {
+                            result = AttributeType.QUATERNION;
+                            value = modifyQuaternion(value);
+                        }
+                    }
+                }
             }
 
             return result;

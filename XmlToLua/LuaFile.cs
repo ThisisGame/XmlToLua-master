@@ -145,6 +145,7 @@ namespace XmlToLua
                         builder.Append("nil");
                         break;
                     default:
+                        builder.Append(item.value);
                         break;
                 }
                 if (count < attributes.Count)

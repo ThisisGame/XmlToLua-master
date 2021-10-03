@@ -57,6 +57,9 @@ namespace XmlToLua
         static void SingleThreadSupport(FileInfo[] files)
         {
             MyXmlReader reader = new MyXmlReader();
+            MyXmlReader.modifyVector3 = (str) => {
+                return "Vector3.new" + str;
+            };
             LuaFile lua = new LuaFile();
             foreach (FileInfo item in files)
             {
